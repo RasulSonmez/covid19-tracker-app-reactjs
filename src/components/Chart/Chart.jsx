@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
+
 import { Line, Bar } from "react-chartjs-2";
+import { Chart, registerables } from "chart.js";
 
 import { fetchDailyData } from "../../api";
 
 import styles from "./Chart.module.css";
 
-const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+const ChartComponent = ({
+  data: { confirmed, recovered, deaths },
+  country,
+}) => {
   const [dailyData, setDailyData] = useState({});
+
+  Chart.register(...registerables);
 
   useEffect(() => {
     const fetchMyAPI = async () => {
@@ -78,4 +85,4 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
   );
 };
 
-export default Chart;
+export default ChartComponent;
